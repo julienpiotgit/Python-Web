@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+  <h1>{% block title %}Modifier le groupe "{{ post['titre'] }}"{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <label for="titre">Titre</label>
     <input name="titre" id="titre"
-      value="{{ request.form['titre'] or groupe['titre'] }}" required>
+      value="{{ request.form['titre'] or post['titre'] }}" required>
     <label for="description">Description</label>
-    <textarea name="description" id="description">{{ request.form['description'] or groupe['description'] }}</textarea>
+    <textarea name="description" id="description">{{ request.form['description'] or post['description'] }}</textarea>
+    <label for="commentaire">Commentaire</label>
+    <textarea name="commentaire" id="commentaire">{{ request.form['commentaire'] or post['commentaire'] }}</textarea>
     <input type="submit" value="Enregistrer">
   </form>
   <hr>
-  <form action="{{ url_for('groupe.delete', id=groupe['id']) }}" method="post">
-    <input class="danger" type="submit" value="Supprimer" onclick="return confirm('Êtes vous sur ?');">
-  </form>
 {% endblock %}
