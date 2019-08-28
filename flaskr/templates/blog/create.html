@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Nouveau groupe{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="titre">Titre</label>
+    <input name="titre" id="titre" value="{{ request.form['titre'] }}" required>
+    <label for="description">Description</label>
+    <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
+    <label for="commentaire">Commentaire</label>
+    <textarea name="commentaire" id="commentaire">{{ request.form['commentaire'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
