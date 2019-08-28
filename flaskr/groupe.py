@@ -14,7 +14,7 @@ def index():
     posts = db.execute(
         'SELECT p.id, titre, description, commentaire, groupe_id, username'
         ' FROM groupe p JOIN user u ON p.groupe_id = u.id'
-        # ' ORDER BY created DESC'
+        ' ORDER BY groupe_id DESC'
     ).fetchall()
     return render_template('groupe/index.html', posts=posts)
 
@@ -35,8 +35,8 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (titre, description, commentaire, groupe_id)'
-                ' VALUES (?, ?, ?)',
+                'INSERT INTO groupe (titre, description, commentaire, groupe_id)'
+                ' VALUES (?, ?, ?, ?)',
                 (titre, description, commentaire, g.user['id'])
             )
             db.commit()
@@ -79,7 +79,7 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                'UPDATE post SET titre = ?, description = ?, commentaire = ?'
+                'UPDATE groupe SET titre = ?, description = ?, commentaire = ?'
                 ' WHERE id = ?',
                 (titre, description, commentaire, id)
             )

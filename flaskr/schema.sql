@@ -16,7 +16,7 @@ CREATE TABLE groupe (
   FOREIGN KEY (groupe_id) REFERENCES user (id)
 );
 
-CREATE TABLE image (
+CREATE TABLE img (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   img TEXT NOT NULL,
 );

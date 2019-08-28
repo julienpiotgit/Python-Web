@@ -1,11 +1,11 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Le site des groupes</title>
+<title>Le site des groupes de musiques</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-  <h1>Flaskr</h1>
+  <h1>Site des meilleurs groupe de musique</h1>
   <ul>
     {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
+      <li><span>Connecté en tant que "{{ g.user['username'] }}"</span>
       <li><a href="{{ url_for('auth.logout') }}">Deconnexion</a>
     {% else %}
       <li><a href="{{ url_for('auth.register') }}">Creer un compte</a>
