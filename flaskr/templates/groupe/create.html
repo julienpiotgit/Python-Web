@@ -10,8 +10,6 @@
     <input name="titre" id="titre" value="{{ request.form['titre'] }}" required>
     <label for="description">Description</label>
     <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
-    <label for="commentaire">Commentaire</label>
-    <textarea name="commentaire" id="commentaire">{{ request.form['commentaire'] }}</textarea>
     <input type="submit" value="Enregistrer">
     <input type="button" onclick="javascript:history.back(-1);" value="Retour">
   </form>

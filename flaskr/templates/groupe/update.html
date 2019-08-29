@@ -11,8 +11,6 @@
       value="{{ request.form['titre'] or post['titre'] }}" required>
     <label for="description">Description</label>
     <textarea name="description" id="description">{{ request.form['description'] or post['description'] }}</textarea>
-    <label for="commentaire">Commentaire</label>
-    <textarea name="commentaire" id="commentaire">{{ request.form['commentaire'] or post['commentaire'] }}</textarea>
     <input type="submit" value="Enregistrer">
   </form>
   <hr>

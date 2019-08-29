@@ -12,7 +12,7 @@ CREATE TABLE groupe (
   groupe_id INTEGER NOT NULL,
   titre TEXT NOT NULL,
   description TEXT NOT NULL,
-  commentaire TEXT NOT NULL,
+  commentaire TEXT NULL,
   FOREIGN KEY (groupe_id) REFERENCES user (id)
 );
 

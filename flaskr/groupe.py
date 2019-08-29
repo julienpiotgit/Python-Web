@@ -24,7 +24,6 @@ def create():
     if request.method == 'POST':
         titre = request.form['titre']
         description = request.form['description']
-        commentaire = request.form['commentaire']
         error = None
 
         if not titre:
@@ -35,9 +34,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO groupe (titre, description, commentaire, groupe_id)'
-                ' VALUES (?, ?, ?, ?)',
-                (titre, description, commentaire, g.user['id'])
+                'INSERT INTO groupe (titre, description, groupe_id)'
+                ' VALUES (?, ?, ?)',
+                (titre, description, g.user['id'])
             )
             db.commit()
             return redirect(url_for('groupe.index'))
@@ -68,7 +67,7 @@ def update(id):
     if request.method == 'POST':
         titre = request.form['titre']
         description = request.form['description']
-        commentaire = request.form['commentaire']
+        # commentaire = request.form['commentaire']
         error = None
 
         if not titre:
@@ -79,14 +78,38 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                'UPDATE groupe SET titre = ?, description = ?, commentaire = ?'
+                'UPDATE groupe SET titre = ?, description = ?'
                 ' WHERE id = ?',
-                (titre, description, commentaire, id)
+                (titre, description, id)
             )
             db.commit()
             return redirect(url_for('groupe.index'))
 
     return render_template('groupe/update.html', post=post)
+
+
+@bp.route('/<int:id>/', methods=('GET', 'POST'))
+@login_required
+def update2(id):
+    post = get_post(id)
+
+    if request.method == 'POST':
+        commentaire = request.form['commentaire']
+        error = None
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE groupe SET commentaire = ?'
+                ' WHERE id = ?',
+                (commentaire, id)
+            )
+            db.commit()
+            return redirect(url_for('groupe.index'))
+
+    return render_template('groupe/index.html', post=post)
 
 
 @bp.route('/<int:id>/delete', methods=('POST',))
