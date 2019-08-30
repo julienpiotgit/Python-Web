@@ -15,21 +15,25 @@
           <h1>Titre : {{ post['titre'] }}</h1>
           
         </div>
-        {% if g.user['id'] == post['groupe_id'] %}
+      </header>
+      <p class="body">Description : {{ post['description'] }}</p>
+      <form action="{{ url_for('groupe.update2', id=post['id']) }}" method="post">
+        <input name="commentaire" id="commentaire" value="{{ request.form['commentaire'] }}" placeholder="Entrer un nouveau commentaire" required>
+        <input type="submit" value="Envoyer">
+      </form>
+      <label for="commentaire">Commentaire</label>
+      {% for comm in comms %} 
+        {% if post['id'] == comm['groupe_id'] %}
+          <p class="body">{{ comm['commentaire'] }}</p>
+        {% endif %}
+      {% endfor %}
+    </article>
+    {% if g.user['id'] == post['groupe_id'] %}
           <a class="action" href="{{ url_for('groupe.update', id=post['id']) }}">Modifier</a>
           <form action="{{ url_for('groupe.delete', id=post['id']) }}" method="post">
             <input type="submit" value="Supprimer" onclick="return confirm('Êtes vous sur de supprimer le groupe ?');">
           </form>
-        {% endif %}
-      </header>
-      <p class="body">Description : {{ post['description'] }}</p>
-      <form action="{{ url_for('groupe.update2', id=post['id']) }}" method="post">
-        <label for="commentaire">Commentaire</label>
-        <p class="body">{{ post['commentaire'] }}</p>
-        <input name="commentaire" id="commentaire" value="{{ request.form['commentaire'] }}" placeholder="Entrer un nouveau commentaire" required>
-        <input type="submit" value="Envoyer">
-      </form>
-    </article>
+      {% endif %}
     {% if not loop.last %}
       <hr>
     {% endif %}

@@ -69,6 +69,7 @@ body {
 .connection{
   float:right;
   color:white;
+  font-size: 30px;
 }
 
 [tabindex="-1"]:focus {
