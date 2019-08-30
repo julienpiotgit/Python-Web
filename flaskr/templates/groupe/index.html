@@ -12,7 +12,7 @@
     <article class="post">
       <header>
         <div>
-          <h1>{{ post['titre'] }}</h1>
+          <h1>Titre : {{ post['titre'] }}</h1>
           
         </div>
         {% if g.user['id'] == post['groupe_id'] %}
@@ -22,7 +22,7 @@
           </form>
         {% endif %}
       </header>
-      <p class="body">{{ post['description'] }}</p>
+      <p class="body">Description : {{ post['description'] }}</p>
       <form action="{{ url_for('groupe.update2', id=post['id']) }}" method="post">
         <label for="commentaire">Commentaire</label>
         <p class="body">{{ post['commentaire'] }}</p>
