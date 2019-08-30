@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS groupe;
+DROP TABLE IF EXISTS commentaire;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -12,11 +13,12 @@ CREATE TABLE groupe (
   groupe_id INTEGER NOT NULL,
   titre TEXT NOT NULL,
   description TEXT NOT NULL,
-  commentaire TEXT NOT NULL,
   FOREIGN KEY (groupe_id) REFERENCES user (id)
 );
 
-CREATE TABLE img (
+CREATE TABLE commentaire (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  img TEXT NOT NULL,
+  commentaire TEXT NOT NULL,
+  groupe_id INTEGER NOT NULL,
+  FOREIGN KEY (groupe_id) REFERENCES groupe (id)
 );
