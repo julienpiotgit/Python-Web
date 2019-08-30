@@ -1,17 +1,18 @@
 <!doctype html>
 <title>Le site des groupes de musiques</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>Site des meilleurs groupe de musique</h1>
-  <ul>
+<link rel="stylesheet" href="../static/bootstrap.css">
+<script src="../static/jquery-3.4.1.min.js"></script>
+<script src="../static/bootstrap.bundle.js"></script>
+<body background="../static/YWaaUWl.jpg">
+
+<nav class="navbar navbar-dark bg-dark">
     {% if g.user %}
-      <li><span>Connecté en tant que "{{ g.user['username'] }}"</span>
+      <span>Connecté en tant que "{{ g.user['username'] }}"</span>
       <li><a href="{{ url_for('auth.logout') }}">Deconnexion</a>
     {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Creer un compte</a>
-      <li><a href="{{ url_for('auth.login') }}">Se connecter</a>
+      <a href="{{ url_for('auth.register') }}">Creer un compte</a>
+      <a href="{{ url_for('auth.login') }}">Se connecter</a>
     {% endif %}
-  </ul>
 </nav>
 <section class="content">
   <header>
@@ -21,4 +22,6 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
+
 </section>
+</body>
